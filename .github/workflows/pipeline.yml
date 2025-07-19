@@ -1,4 +1,4 @@
-name: Grafana and prometheus pipeline
+name: Grafana and Prometheus pipeline
 
 on:
   push:
@@ -20,14 +20,14 @@ jobs:
           node-version: '18'
 
 
-       - name: Install dependencies
-         working-directory: ./backend
-         run: npm install
+      - name: Install dependencies
+        working-directory: ./backend
+        run: npm install
 
 
-       - name: Run test
-         working-directory: ./backend
-         run: npm test
+      - name: Run test
+        working-directory: ./backend
+        run: npm test
 
 
       - name: Log in to DockerHub
