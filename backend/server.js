@@ -13,7 +13,7 @@ register.registerMetric(counter);
 
 app.get('/', (req, res) => {
   counter.inc();
-  res.send('Hello World!');
+  res.send('Grafana and Prometheus');
 });
 
 app.get('/metrics', async (req, res) => {
