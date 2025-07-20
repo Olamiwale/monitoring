@@ -1,0 +1,29 @@
+name: CD to Kubernetes
+
+on:
+  workflow_run:
+    workflows: ["Grafana and Prometheus pipeline"]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Kubeconfig
+        run: |
+          echo "${{ secrets.KUBECONFIG_DATA }}" > kubeconfig.yaml
+          export KUBECONFIG=$PWD/kubeconfig.yaml
+
+      - name: Install kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: 'latest'
+
+      - name: Deploy to Kubernetes
+        run: |
+          kubectl apply -f k8s/
