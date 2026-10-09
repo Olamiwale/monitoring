@@ -21,7 +21,7 @@ groups:
           severity: critical
         annotations:
           summary: "High error rate on Express app"
-          description: "The Express app is experiencing a high error rate (more than 5% of requests are failing)."
+          description: "App is experiencing a high error rate (more than 5% of requests are failing)."
 
       - alert: HighRequestRate
         expr: |
@@ -31,4 +31,4 @@ groups:
           severity: warning
         annotations:
           summary: "High request rate"
-          description: "The Express app is experiencing a high request rate (more than 100 requests per second)."
+          description: "App is experiencing a high request rate (more than 100 requests per second)."
