@@ -1,8 +1,18 @@
 global:
-  resolve_timeout: 5m
+  resolve_timeout: 5m #first write update to 5m, then change to 1m after testing
+  smtp_smarthost: '${SMTP_HOST}'
+  smtp_from: '${SMTP_USER}'
+  smtp_auth_username: '${SMTP_USER}'
+  smtp_auth_password: '${SMTP_PASSWORD}'
 
 route:
-  receiver: default
+  receiver: default # This is the default route for all alerts
+  group_wait: 10s
+  group_interval: 5m
+  repeat_interval: 4h
 
 receivers:
-  - name: default
+  - name: default # This is the default receiver for all alerts
+    email_configs:
+      - to: '${ALERT_EMAIL_TO}'
+        send_resolved: true
