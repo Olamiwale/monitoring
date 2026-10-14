@@ -28,9 +28,14 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req, res) => {
-  console.log("Home endpoint requested");
-  res.send("Hello from Express!");
+  res.send("Hello from Express! This is a monitoring setup with Grafana, Prometheus, Loki and ...");
 });
+
+app.get("/test-error", (req, res) => {
+  console.error("Simulated HTTP 500 error");
+  res.status(500).send("Simulated failure");
+});
+
 
 app.get("/health", (req, res) => {
   res.json({ status: "healthy" });
